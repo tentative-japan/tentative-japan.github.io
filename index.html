@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tentative</title>
+<meta name="description" content="tentative は日本のオルタナティブロックバンド。最新作『After the Weather』配信中。">
+<meta property="og:title" content="tentative">
+<meta property="og:description" content="日本のオルタナティブロックバンド。最新作『After the Weather』配信中。">
+<meta property="og:image" content="img/after-the-weather.jpg">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Zilla+Slab:wght@500;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1f2d45;       /* ロゴの紺 */
+    --sub: #5b6475;
+    --paper: #ffffff;
+    --band: #f4f1ea;
+    --orange: #f29a1f;    /* 女の子の髪 */
+    --red: #e2352b;
+    --blue: #2a5bd7;
+    --line: #e3ded3;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+
+  /* 上の細いナビ */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 52px; }
+  nav .mark { font-family: "Zilla Slab", serif; font-weight: 700; font-size: 20px; text-decoration: none; }
+  nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 13px; letter-spacing: .08em; }
+  nav ul a { text-decoration: none; color: var(--sub); }
+  nav ul a:hover { color: var(--ink); }
+
+  /* 髪の3色ライン */
+  .stripe { height: 6px; background: linear-gradient(90deg, var(--orange) 0 34%, var(--red) 34% 67%, var(--blue) 67% 100%); }
+
+  /* トップ */
+  .hero { text-align: center; padding: 40px 0 56px; }
+  .hero img.girl { width: min(420px, 86vw); height: auto; display: block; margin: 0 auto; }
+  .hero p { margin: 8px 0 0; color: var(--sub); font-size: 14px; letter-spacing: .12em; }
+
+  section { padding: 72px 0; }
+  section.alt { background: var(--band); }
+  h2 {
+    font-family: "Zilla Slab", serif; font-weight: 700;
+    font-size: 30px; letter-spacing: .04em; margin: 0 0 28px;
+  }
+  h2::after {
+    content: ""; display: block; width: 42px; height: 4px; margin-top: 8px;
+    background: linear-gradient(90deg, var(--orange) 0 33%, var(--red) 33% 66%, var(--blue) 66%);
+  }
+
+  /* リリース */
+  .release { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+  .release img { width: 100%; height: auto; display: block; box-shadow: 0 10px 30px rgba(31,45,69,.18); }
+  .release h3 { font-family: "Zilla Slab", serif; font-size: 28px; margin: 0 0 4px; line-height: 1.3; }
+  .release .meta { color: var(--sub); font-size: 14px; margin: 0 0 22px; }
+  .btn {
+    display: inline-block; text-decoration: none;
+    background: var(--ink); color: #fff;
+    padding: 12px 26px; border-radius: 999px; font-size: 15px; letter-spacing: .05em;
+  }
+  .btn:hover { background: var(--blue); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); margin-left: 8px; }
+  .btn.ghost:hover { background: var(--ink); color: #fff; }
+
+  /* 動画 */
+  .videos { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+  .videos .main { grid-column: 1 / -1; }
+  .yt {
+    position: relative; aspect-ratio: 16 / 9; background: #000 center / cover no-repeat;
+    cursor: pointer; border: 0; padding: 0; width: 100%; display: block;
+  }
+  .yt::after {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 64px; height: 44px;
+    transform: translate(-50%, -50%); border-radius: 12px; background: rgba(0,0,0,.72);
+  }
+  .yt::before {
+    content: ""; position: absolute; left: 50%; top: 50%; z-index: 1;
+    transform: translate(-35%, -50%);
+    border-style: solid; border-width: 10px 0 10px 17px; border-color: transparent transparent transparent #fff;
+  }
+  .yt:hover::after { background: var(--red); }
+  .yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .yt.playing::before, .yt.playing::after { display: none; }
+  .videos .cap { font-size: 14px; margin: 8px 0 0; }
+  .videos .cap small { color: var(--sub); }
+  .more { margin-top: 28px; font-size: 14px; }
+
+  /* プロフィール */
+  .profile p { margin: 0 0 1.2em; max-width: 40em; }
+  .profile .works { list-style: none; padding: 0; margin: 28px 0 0; border-top: 1px solid var(--line); }
+  .profile .works li { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .profile .works .y { font-family: "Zilla Slab", serif; color: var(--sub); width: 3.5em; flex: none; }
+
+  /* リンク＝ペダルボード（実物の写真） */
+  .board {
+    display: flex; align-items: flex-end; gap: 18px;
+    padding: 30px 24px 22px; border-radius: 10px;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 2px, transparent 2px 5px),
+      #2b2b2e;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.06), 0 12px 28px rgba(0,0,0,.22);
+  }
+  .board .row { display: contents; }
+  .pedal {
+    flex: var(--w) 1 0; min-width: 0;
+    display: flex; flex-direction: column; align-items: center;
+    text-decoration: none; color: #2a2a2a;
+  }
+  .pedal .body { position: relative; width: 100%; transition: transform .08s; }
+  .pedal img {
+    display: block; width: 100%; height: auto;
+    filter: drop-shadow(0 6px 5px rgba(0,0,0,.55));
+  }
+  .pedal .led {
+    position: absolute; left: var(--lx); top: var(--ly);
+    width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+    background: radial-gradient(circle, #ff5a4a 0 30%, rgba(255,40,30,.55) 45%, rgba(255,40,30,0) 70%);
+    opacity: 0; transition: opacity .1s;
+  }
+  .pedal .tape {
+    margin-top: 14px; padding: 2px 10px 1px;
+    background: #efe7d2; box-shadow: 0 1px 2px rgba(0,0,0,.35);
+    font-family: "Caveat", cursive; font-size: 19px; line-height: 1.2; white-space: nowrap;
+    transform: rotate(var(--r, -2deg));
+  }
+  /* 踏んだとき：LEDが点いて沈む */
+  .pedal:hover .led, .pedal:active .led, .pedal:focus-visible .led { opacity: 1; }
+  .pedal:active .body { transform: translateY(4px) scale(.99); }
+  .pedal:active img { filter: drop-shadow(0 2px 2px rgba(0,0,0,.55)); }
+  .pedal:focus-visible { outline: 2px solid #fff; outline-offset: 4px; border-radius: 6px; }
+  .contact { margin-top: 32px; font-size: 14px; color: var(--sub); }
+
+  footer { text-align: center; padding: 40px 0 48px; font-size: 12px; color: var(--sub); }
+  footer .members { display: block; margin-top: 14px; color: var(--sub); opacity: .6; text-decoration: none; letter-spacing: .1em; }
+  footer .members:hover { opacity: 1; text-decoration: underline; }
+  footer img { width: 140px; height: auto; display: block; margin: 0 auto 10px; opacity: .9; }
+
+  @media (max-width: 680px) {
+    nav ul { gap: 12px; font-size: 12px; }
+    nav ul li.hide-sp { display: none; }
+    section { padding: 56px 0; }
+    .release, .videos { grid-template-columns: 1fr; }
+    .board { flex-direction: column; align-items: stretch; gap: 22px; padding: 22px 14px 18px; }
+    .board .row { display: flex; align-items: flex-end; gap: 12px; }
+    .pedal .tape { font-size: 16px; }
+    .btn.ghost { margin: 10px 0 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="mark" href="#top">tentative</a>
+    <ul>
+      <li><a href="#release">Release</a></li>
+      <li><a href="#video">Video</a></li>
+      <li class="hide-sp"><a href="#profile">Profile</a></li>
+      <li><a href="#links">Links</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="stripe"></div>
+
+<header class="hero" id="top">
+  <img class="girl" src="img/girl.png" alt="tentative">
+  <p>alternative rock band from Japan</p>
+</header>
+
+<section class="alt" id="release">
+  <div class="wrap">
+    <h2>Release</h2>
+    <div class="release">
+      <img src="img/after-the-weather.jpg" alt="After the Weather ジャケット">
+      <div>
+        <h3>After the Weather</h3>
+        <p class="meta">2026.08.28 release ／ 8曲・35分</p>
+        <a class="btn" href="https://big-up.style/7WDI2xySpr" target="_blank" rel="noopener">配信で聴く</a>
+        <a class="btn ghost" href="https://open.spotify.com/album/5erekhIldwoIlHlJTuiZTv" target="_blank" rel="noopener">Spotify</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="wrap">
+    <h2>Video</h2>
+    <div class="videos">
+      <div class="main">
+        <button class="yt" data-id="1StcgJbBL8o" aria-label="Bad Luck Charm を再生"></button>
+        <p class="cap">Bad Luck Charm <small>– Official Music Video</small></p>
+      </div>
+      <div>
+        <button class="yt" data-id="sjhkUPzqncs" aria-label="1997 を再生"></button>
+        <p class="cap">1997 <small>– AM/FM Acoustic Session</small></p>
+      </div>
+      <div>
+        <button class="yt" data-id="h2buw2UOxSA" aria-label="Fall to the Light を再生"></button>
+        <p class="cap">Fall to the Light <small>– AM/FM Acoustic Session</small></p>
+      </div>
+      <div>
+        <button class="yt" data-id="zn_TxFStS20" aria-label="武蔵境STATTOのライブを再生"></button>
+        <p class="cap">live at 武蔵境STATTO <small>– 2026</small></p>
+      </div>
+      <div>
+        <button class="yt" data-id="hXrX97-hwjI" aria-label="Weekend を再生"></button>
+        <p class="cap">Weekend <small>– Official Music Video</small></p>
+      </div>
+    </div>
+    <p class="more"><a href="https://www.youtube.com/@tentativeofficial8822" target="_blank" rel="noopener">YouTubeチャンネルでもっと見る →</a></p>
+  </div>
+</section>
+
+<section class="alt profile" id="profile">
+  <div class="wrap">
+    <h2>Profile</h2>
+    <p>tentative は日本のオルタナティブロックバンド。<br>
+    2024年に25曲入りの『A Sonic Tapestry』、2026年8月に『After the Weather』を発表。</p>
+    <p>バンド名には「暫定的」「実験的」「あやふや」といった意味がある。結果がまだ出ておらず、自分たちでどうにでも変えられる——という肯定的な意味に取れるところが決め手になった。好きな blur、pavement と同じく英単語ひとつであることも理由のひとつ。</p>
+    <ul class="works">
+      <li><span class="y">2026</span><span>After the Weather</span></li>
+      <li><span class="y">2024</span><span>A Sonic Tapestry</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="links">
+  <div class="wrap">
+    <h2>Links</h2>
+    <div class="board">
+      <div class="row">
+        <a class="pedal" style="--w:820;--lx:7.6%;--ly:48.6%;--r:-2deg" href="https://big-up.style/7WDI2xySpr" target="_blank" rel="noopener">
+          <span class="body"><img src="img/pedal-klon.webp" alt="Klon Centaur"><i class="led"></i></span><span class="tape">Streaming</span></a>
+        <a class="pedal" style="--w:414;--lx:47.5%;--ly:5.3%;--r:2deg" href="https://www.youtube.com/@tentativeofficial8822" target="_blank" rel="noopener">
+          <span class="body"><img src="img/pedal-jb2.webp" alt="JHS Angry Driver"><i class="led"></i></span><span class="tape">YouTube</span></a>
+        <a class="pedal" style="--w:496;--lx:48.5%;--ly:15.4%;--r:-1deg" href="https://x.com/tentative_japan" target="_blank" rel="noopener">
+          <span class="body"><img src="img/pedal-fangs.webp" alt="tc electronic Fangs"><i class="led"></i></span><span class="tape">X</span></a>
+      </div>
+      <div class="row">
+        <a class="pedal" style="--w:451;--lx:50%;--ly:54.4%;--r:1.5deg" href="https://www.instagram.com/tentativeofficial/" target="_blank" rel="noopener">
+          <span class="body"><img src="img/pedal-fuzz.webp" alt="Fender Hammertone Fuzz"><i class="led"></i></span><span class="tape">Instagram</span></a>
+        <a class="pedal" style="--w:440;--lx:48%;--ly:4.3%;--r:-2.5deg" href="https://tentativetoxicweekend.original-goods.jp/" target="_blank" rel="noopener">
+          <span class="body"><img src="img/pedal-sd2.webp" alt="BOSS SD-2"><i class="led"></i></span><span class="tape">Goods</span></a>
+        <a class="pedal" style="--w:820;--lx:29%;--ly:7.5%;--r:1deg" href="https://note.com/taata1240" target="_blank" rel="noopener">
+          <span class="body"><img src="img/pedal-calwah.webp" alt="Eden California Wah"><i class="led"></i></span><span class="tape">note</span></a>
+      </div>
+    </div>
+    <p class="contact">ライブのお誘い・お問い合わせは、X または Instagram の DM へどうぞ。</p>
+  </div>
+</section>
+
+<div class="stripe"></div>
+<footer>
+  <img src="img/logo.png" alt="tentative">
+  © tentative
+  <a class="members" href="room/">members</a>
+</footer>
+
+<script>
+  // サムネイルだけ先に出して、押されたら動画を読み込む（ページを軽くするため）
+  document.querySelectorAll('.yt').forEach(function (el) {
+    var id = el.dataset.id;
+    el.style.backgroundImage = 'url(https://i.ytimg.com/vi/' + id + '/hqdefault.jpg)';
+    el.addEventListener('click', function () {
+      if (el.classList.contains('playing')) return;
+      el.classList.add('playing');
+      el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+        '?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    });
+  });
+</script>
+</body>
+</html>
