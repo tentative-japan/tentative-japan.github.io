@@ -3,150 +3,173 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Taro Mizuno</title>
+<title>T.M. Storage</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="../img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Zilla+Slab:wght@500;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Stardos+Stencil:wght@400;700&family=Share+Tech+Mono&family=Dela+Gothic+One&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* 倉庫：コンクリート・鉄・ステンシル・警告テープ */
   :root {
-    --ink: #1f2d45;
-    --sub: #5b6475;
-    --paper: #ffffff;
-    --band: #f4f1ea;
-    --orange: #f29a1f;
-    --red: #e2352b;
-    --blue: #2a5bd7;
-    --line: #e3ded3;
+    --concrete: #2a2b28;
+    --slab: #33342f;
+    --text: #d8d3c2;
+    --dim: #8f8b7c;
+    --olive: #6d6d3c;
+    --khaki: #b6a77a;
+    --rust: #9a5530;
+    --hazard: #e3b322;
+    --line: #4a4a43;
+    --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0; background: var(--paper); color: var(--ink);
+    margin: 0; color: var(--text);
+    background: var(--noise), radial-gradient(ellipse at 50% -10%, #3b3c36 0, var(--concrete) 60%) fixed, var(--concrete);
     font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
     line-height: 1.9; -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
   .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
-  .stripe { height: 6px; background: linear-gradient(90deg, var(--orange) 0 34%, var(--red) 34% 67%, var(--blue) 67% 100%); }
+  .hazard { height: 12px; background: repeating-linear-gradient(-45deg, var(--hazard) 0 14px, #141413 14px 28px); opacity: .9; }
+  .mono { font-family: "Share Tech Mono", ui-monospace, monospace; letter-spacing: .06em; }
 
-  header { padding: 56px 0 40px; }
-  header h1 { font-family: "Zilla Slab", serif; font-weight: 700; font-size: 44px; margin: 0; line-height: 1.1; }
-  header p { margin: 10px 0 0; color: var(--sub); font-size: 14px; letter-spacing: .08em; }
-  header .back { font-size: 13px; color: var(--sub); text-decoration: none; }
-  header .back:hover { color: var(--ink); text-decoration: underline; }
-  header .me { display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 36px; align-items: end; margin-top: 18px; }
-  header .me img { width: 100%; height: auto; display: block; border-radius: 4px; box-shadow: 0 10px 30px rgba(31,45,69,.18); }
-  header .me .profile p { margin: 0 0 .6em; color: var(--ink); font-size: 15px; letter-spacing: 0; }
-  header .me .profile p.role { color: var(--sub); font-size: 14px; letter-spacing: .08em; margin-bottom: 1.2em; }
+  header { padding: 40px 0 56px; }
+  header .back { font-family: "Share Tech Mono", monospace; font-size: 13px; color: var(--dim); text-decoration: none; letter-spacing: .08em; }
+  header .back:hover { color: var(--hazard); }
+  header .sign {
+    display: inline-block; margin: 26px 0 0; padding: 4px 12px;
+    border: 2px solid var(--hazard); color: var(--hazard);
+    font-family: "Share Tech Mono", monospace; font-size: 12px; letter-spacing: .14em;
+  }
+  header .me { display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 36px; align-items: end; margin-top: 22px; }
+  header .me img { width: 100%; height: auto; display: block; filter: grayscale(.35) contrast(1.08); border: 6px solid #1b1b19; box-shadow: 0 14px 30px rgba(0,0,0,.5); }
+  header h1 {
+    font-family: "Stardos Stencil", serif; font-weight: 700; font-size: 56px; line-height: 1; margin: 0;
+    color: var(--khaki); letter-spacing: .03em; text-transform: uppercase;
+  }
+  header .role { margin: 10px 0 1.4em; color: var(--dim); font-size: 13px; }
+  header .me .profile p { margin: 0 0 .6em; font-size: 15px; }
 
   section { padding: 64px 0; }
-  section.alt { background: var(--band); }
-  h2 { font-family: "Zilla Slab", serif; font-weight: 700; font-size: 30px; letter-spacing: .04em; margin: 0 0 8px; }
-  h2 .en { display: block; font-size: 15px; font-weight: 500; color: var(--sub); letter-spacing: .08em; margin-top: 2px; }
-  h2::after {
-    content: ""; display: block; width: 42px; height: 4px; margin-top: 8px;
-    background: linear-gradient(90deg, var(--orange) 0 33%, var(--red) 33% 66%, var(--blue) 66%);
-  }
-  .lead { color: var(--sub); font-size: 14px; margin: 14px 0 28px; }
+  section.alt { background: rgba(0,0,0,.18); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  /* 木箱のラベル風の見出し */
+  h2 { margin: 0 0 6px; display: inline-block; padding: 10px 18px 8px; border: 3px solid var(--khaki); color: var(--khaki); line-height: 1.15; }
+  h2 .no { display: block; font-family: "Share Tech Mono", monospace; font-weight: 400; font-size: 12px; letter-spacing: .2em; color: var(--dim); margin-bottom: 4px; }
+  h2 .ttl { font-family: "Stardos Stencil", serif; font-weight: 700; font-size: 34px; letter-spacing: .05em; text-transform: uppercase; }
+  h2 .ttl.ja { font-family: "Dela Gothic One", sans-serif; font-weight: 400; font-size: 30px; letter-spacing: .04em; text-transform: none; }
+  h2 .en { display: block; font-family: "Share Tech Mono", monospace; font-weight: 400; font-size: 13px; letter-spacing: .12em; color: var(--dim); margin-top: 6px; }
+  .lead { color: var(--dim); font-size: 14px; margin: 16px 0 30px; }
 
   /* 配信作品 */
   .release { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
-  .release img { width: 100%; height: auto; display: block; box-shadow: 0 10px 30px rgba(31,45,69,.18); }
-  .release h3 { font-family: "Zilla Slab", serif; font-size: 28px; margin: 0 0 4px; line-height: 1.3; }
-  .release .meta { color: var(--sub); font-size: 14px; margin: 0 0 18px; }
-  .release iframe { width: 100%; height: 450px; border: 0; border-radius: 10px; margin-top: 22px; }
+  .release img { width: 100%; height: auto; display: block; border: 6px solid #1b1b19; box-shadow: 0 14px 30px rgba(0,0,0,.5); }
+  .release h3 { font-family: "Stardos Stencil", serif; font-weight: 700; font-size: 32px; margin: 0 0 4px; line-height: 1.2; color: var(--text); text-transform: uppercase; }
+  .release .meta { color: var(--dim); font-size: 13px; margin: 0 0 20px; }
+  .release iframe { width: 100%; height: 450px; border: 0; margin-top: 22px; }
   .btn {
-    display: inline-block; text-decoration: none; background: var(--ink); color: #fff;
-    padding: 12px 26px; border-radius: 999px; font-size: 15px; letter-spacing: .05em;
+    display: inline-block; text-decoration: none; background: var(--hazard); color: #141413;
+    padding: 11px 24px; font-family: "Share Tech Mono", monospace; font-size: 15px; letter-spacing: .1em;
+    box-shadow: 4px 4px 0 #141413;
   }
-  .btn:hover { background: var(--blue); }
+  .btn:hover { background: var(--khaki); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #141413; }
 
-  /* リフ倉庫 */
-  .riffs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-  .riff { border-bottom: 1px solid var(--line); }
+  /* Riff Box＝在庫リスト */
+  .riffs { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--khaki); }
+  .riff { border-bottom: 1px dashed var(--line); }
   .riff button.row {
     all: unset; box-sizing: border-box; cursor: pointer; width: 100%;
-    display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 12px;
+    display: grid; grid-template-columns: 64px 36px 1fr auto; align-items: center; gap: 12px;
     padding: 12px 4px;
   }
-  .riff button.row:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+  .riff button.row:hover { background: rgba(227,179,34,.06); }
+  .riff button.row:focus-visible { outline: 2px solid var(--hazard); outline-offset: -2px; }
+  .riff .no { font-family: "Share Tech Mono", monospace; color: var(--dim); font-size: 13px; letter-spacing: .08em; }
   .riff .play {
-    width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--ink);
+    width: 32px; height: 32px; border: 2px solid var(--khaki);
     display: grid; place-items: center;
   }
   .riff .play::before {
     content: ""; margin-left: 3px;
-    border-style: solid; border-width: 7px 0 7px 11px; border-color: transparent transparent transparent var(--ink);
+    border-style: solid; border-width: 7px 0 7px 11px; border-color: transparent transparent transparent var(--khaki);
   }
-  .riff.on .play { background: var(--ink); }
+  .riff.on .play { background: var(--hazard); border-color: var(--hazard); }
   .riff.on.playing .play::before {
     margin: 0; width: 10px; height: 12px; border: 0;
-    border-left: 3px solid #fff; border-right: 3px solid #fff;
+    border-left: 3px solid #141413; border-right: 3px solid #141413;
   }
-  .riff.on:not(.playing) .play::before { border-left-color: #fff; }
+  .riff.on:not(.playing) .play::before { border-left-color: #141413; }
+  .riff.on .t span { color: var(--hazard); }
   .riff .t { font-size: 15px; }
-  .riff .t small { display: block; color: var(--sub); font-size: 12px; line-height: 1.4; }
-  .riff .d { font-family: "Zilla Slab", serif; color: var(--sub); font-size: 14px; }
-  .riff .bar { display: none; padding: 0 4px 14px 56px; }
+  .riff .t small { display: block; font-family: "Share Tech Mono", monospace; color: var(--dim); font-size: 12px; line-height: 1.4; letter-spacing: .08em; }
+  .riff .d { font-family: "Share Tech Mono", monospace; color: var(--dim); font-size: 14px; }
+  .riff .bar { display: none; padding: 0 4px 14px 124px; }
   .riff.on .bar { display: block; }
-  .riff input[type=range] { width: 100%; accent-color: var(--red); }
+  .riff input[type=range] { width: 100%; accent-color: var(--hazard); }
 
-  /* ギター写真館 */
-  .guitars { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 28px; }
+  /* ギター機材写真館 */
+  .guitars { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 32px 28px; }
   .guitar { margin: 0; text-align: center; }
   .guitar .ph { position: relative; display: block; width: 100%; border: 0; padding: 0; background: none; }
-  .guitar img { width: 100%; height: auto; display: block; border-radius: 4px; box-shadow: 0 6px 18px rgba(31,45,69,.14); }
+  .guitar img { width: 100%; height: auto; display: block; border: 6px solid #1b1b19; box-shadow: 0 12px 24px rgba(0,0,0,.5); }
   .guitar button.ph { cursor: pointer; }
   .guitar .ph .back { position: absolute; inset: 0; opacity: 0; transition: opacity .35s; }
   .guitar .ph.flip .back { opacity: 1; }
-  .guitar .hint { position: absolute; right: 8px; bottom: 8px; background: rgba(255,255,255,.85); font-size: 11px; padding: 0 8px; border-radius: 99px; color: var(--sub); }
+  .guitar .hint { position: absolute; right: 12px; bottom: 12px; background: var(--hazard); color: #141413; font-family: "Share Tech Mono", monospace; font-size: 11px; padding: 0 8px; }
   .guitar figcaption { margin-top: 14px; }
   .guitar .tape {
-    display: inline-block; padding: 2px 12px 1px; background: #efe7d2;
-    box-shadow: 0 1px 2px rgba(0,0,0,.25);
+    display: inline-block; padding: 2px 12px 1px; background: #e6dcc0; color: #2a2a2a;
+    box-shadow: 0 1px 3px rgba(0,0,0,.5);
     font-family: "Caveat", cursive; font-size: 21px; line-height: 1.2;
     transform: rotate(var(--r, -2deg));
   }
 
-  footer { text-align: center; padding: 40px 0 48px; font-size: 12px; color: var(--sub); }
+  footer { text-align: center; padding: 36px 0 48px; font-family: "Share Tech Mono", monospace; font-size: 12px; letter-spacing: .14em; color: var(--dim); }
 
   @media (max-width: 680px) {
-    header h1 { font-size: 36px; }
+    header h1 { font-size: 42px; }
     header .me { grid-template-columns: 1fr; gap: 22px; }
     header .me #me-photo { max-width: 360px; }
     section { padding: 52px 0; }
     .release { grid-template-columns: 1fr; }
+    h2 .ttl { font-size: 28px; }
+    h2 .ttl.ja { font-size: 24px; }
+    .riff button.row { grid-template-columns: 52px 32px 1fr auto; gap: 10px; }
+    .riff .bar { padding-left: 4px; }
   }
 </style>
 </head>
 <body>
-<div class="stripe"></div>
+<div class="hazard"></div>
 
 <header>
   <div class="wrap">
-    <a class="back" href="../">← tentative</a>
+    <a class="back" href="../">&lt;&lt; BACK TO TENTATIVE</a><br>
+    <span class="sign">STORAGE UNIT T.M.</span>
     <div class="me">
       <div id="me-photo"></div>
       <div class="profile">
         <h1>Taro Mizuno</h1>
-        <p class="role">guitar ／ tentative</p>
+        <p class="role mono">GUITAR ／ TENTATIVE</p>
         <div id="me-profile"></div>
       </div>
     </div>
   </div>
 </header>
 
+<div class="hazard"></div>
 <section class="alt" id="release">
   <div class="wrap">
-    <h2>Solo Works</h2>
+    <h2><span class="no">CRATE 01</span><span class="ttl">Solo Works</span></h2>
     <p class="lead">Taro Mizuno Project 名義のソロ作品。</p>
     <div class="release">
       <img src="img/distortion-sketch.jpg" alt="Distortion Sketch ジャケット">
       <div>
         <h3>Distortion Sketch</h3>
-        <p class="meta">Taro Mizuno Project ／ 2024.12.12 release ／ 17曲</p>
-        <a class="btn" href="https://music.apple.com/jp/album/distortion-sketch/1784629416" target="_blank" rel="noopener">配信で聴く</a>
+        <p class="meta mono">TARO MIZUNO PROJECT ／ 2024.12.12 ／ 17 TRACKS</p>
+        <a class="btn" href="https://music.apple.com/jp/album/distortion-sketch/1784629416" target="_blank" rel="noopener">配信で聴く ▸</a>
         <iframe allow="autoplay *; encrypted-media *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/jp/album/distortion-sketch/1784629416" loading="lazy" title="Distortion Sketch"></iframe>
       </div>
     </div>
@@ -155,7 +178,7 @@
 
 <section id="riffs">
   <div class="wrap">
-    <h2>Riff Box</h2>
+    <h2><span class="no">CRATE 02</span><span class="ttl">Riff Box</span></h2>
     <p class="lead">ギターのインストと、リフのアイデア。曲になる前のかけら。</p>
     <ul class="riffs" id="riffs-list"></ul>
     <audio id="player" preload="none"></audio>
@@ -164,14 +187,14 @@
 
 <section class="alt" id="guitars">
   <div class="wrap">
-    <h2>ギター機材写真館 <span class="en">Guitar Gear Gallery</span></h2>
+    <h2><span class="no">CRATE 03</span><span class="ttl ja">ギター機材写真館</span><span class="en">GUITAR GEAR GALLERY</span></h2>
     <p class="lead">うちのギター。</p>
     <div class="guitars" id="guitars-list"></div>
   </div>
 </section>
 
-<div class="stripe"></div>
-<footer>© Taro Mizuno</footer>
+<div class="hazard"></div>
+<footer>© TARO MIZUNO ／ END OF INVENTORY</footer>
 
 <script>
   // 冒頭の写真とプロフィールは me/profile.json（ソロの顔フォルダの「ソロの顔を更新」で作り直される）
@@ -206,12 +229,13 @@
     var li = document.createElement('li');
     li.className = 'riff';
     li.innerHTML =
-      '<button class="row"><span class="play"></span>' +
+      '<button class="row"><span class="no"></span><span class="play"></span>' +
       '<span class="t"></span><span class="d"></span></button>' +
       '<div class="bar"><input type="range" min="0" max="1000" value="0" aria-label="再生位置"></div>';
     li.querySelector('.t').innerHTML = '<span></span><small></small>';
     li.querySelector('.t span').textContent = r.title;
     li.querySelector('.t small').textContent = r.date;
+    li.querySelector('.no').textContent = 'No.' + String(list.children.length + 1).padStart(3, '0');
     // 長さだけ先に読む
     var probe = new Audio();
     probe.preload = 'metadata';
