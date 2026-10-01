@@ -35,6 +35,10 @@
   header p { margin: 10px 0 0; color: var(--sub); font-size: 14px; letter-spacing: .08em; }
   header .back { font-size: 13px; color: var(--sub); text-decoration: none; }
   header .back:hover { color: var(--ink); text-decoration: underline; }
+  header .me { display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 36px; align-items: end; margin-top: 18px; }
+  header .me img { width: 100%; height: auto; display: block; border-radius: 4px; box-shadow: 0 10px 30px rgba(31,45,69,.18); }
+  header .me .profile p { margin: 0 0 .6em; color: var(--ink); font-size: 15px; letter-spacing: 0; }
+  header .me .profile p.role { color: var(--sub); font-size: 14px; letter-spacing: .08em; margin-bottom: 1.2em; }
 
   section { padding: 64px 0; }
   section.alt { background: var(--band); }
@@ -108,6 +112,8 @@
 
   @media (max-width: 680px) {
     header h1 { font-size: 36px; }
+    header .me { grid-template-columns: 1fr; gap: 22px; }
+    header .me #me-photo { max-width: 360px; }
     section { padding: 52px 0; }
     .release { grid-template-columns: 1fr; }
   }
@@ -119,8 +125,14 @@
 <header>
   <div class="wrap">
     <a class="back" href="../">← tentative</a>
-    <h1>Taro Mizuno</h1>
-    <p>guitar ／ tentative</p>
+    <div class="me">
+      <div id="me-photo"></div>
+      <div class="profile">
+        <h1>Taro Mizuno</h1>
+        <p class="role">guitar ／ tentative</p>
+        <div id="me-profile"></div>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -161,6 +173,23 @@
 <footer>© Taro Mizuno</footer>
 
 <script>
+  // 冒頭の写真とプロフィールは me/profile.json（ソロの顔フォルダの「ソロの顔を更新」で作り直される）
+  fetch('me/profile.json', { cache: 'no-cache' })
+    .then(function (res) { return res.json(); })
+    .then(function (me) {
+      if (me.photo) {
+        var img = new Image();
+        img.src = 'me/' + me.photo; img.alt = 'Taro Mizuno';
+        document.getElementById('me-photo').appendChild(img);
+      }
+      var box = document.getElementById('me-profile');
+      (me.profile || []).forEach(function (line) {
+        var p = document.createElement('p');
+        p.textContent = line;
+        box.appendChild(p);
+      });
+    });
+
   // リフ倉庫の中身は riffs/list.json（リフ箱フォルダの「Riff Boxを更新」で作り直される）
   var list = document.getElementById('riffs-list');
   var audio = document.getElementById('player');
