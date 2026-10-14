@@ -126,6 +126,32 @@
     transform: rotate(var(--r, -2deg));
   }
 
+  /* 歌詞棚＝綴じた歌詞カード */
+  .sheets { border-top: 2px solid var(--khaki); }
+  .sheet { border-bottom: 1px dashed var(--line); }
+  .sheet summary {
+    list-style: none; cursor: pointer;
+    display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 12px;
+    padding: 14px 4px;
+  }
+  .sheet summary::-webkit-details-marker { display: none; }
+  .sheet summary:hover { background: rgba(227,179,34,.06); }
+  .sheet summary:focus-visible { outline: 2px solid var(--hazard); outline-offset: -2px; }
+  .sheet .no { font-family: "Share Tech Mono", monospace; color: var(--dim); font-size: 13px; letter-spacing: .08em; }
+  .sheet .t { font-family: "Stardos Stencil", serif; font-weight: 700; font-size: 22px; letter-spacing: .04em; text-transform: uppercase; line-height: 1.2; }
+  .sheet .t small { display: block; font-family: "Share Tech Mono", monospace; font-weight: 400; color: var(--dim); font-size: 12px; letter-spacing: .08em; text-transform: none; margin-top: 4px; }
+  .sheet .open { font-family: "Share Tech Mono", monospace; font-size: 12px; letter-spacing: .1em; color: var(--khaki); border: 1px solid var(--khaki); padding: 1px 8px; }
+  .sheet[open] .open { background: var(--hazard); border-color: var(--hazard); color: #141413; }
+  .sheet[open] .t { color: var(--hazard); }
+  /* 英詞と和訳は1行ずつ横に組む（折り返してもずれない）。スマホでは英詞→和訳の順に縦 */
+  .sheet .body { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; padding: 6px 4px 34px 80px; }
+  .sheet .body > div { min-height: 0; }
+  .sheet .h { margin: 0 0 12px; font-family: "Share Tech Mono", monospace; font-size: 12px; letter-spacing: .2em; color: var(--dim); }
+  .sheet .en { font-family: "Share Tech Mono", ui-monospace, monospace; font-size: 15px; line-height: 1.75; letter-spacing: .02em; }
+  .sheet .ja { font-size: 14px; line-height: 1.75; padding-top: 1px; }
+  .sheet .gap { height: 1.3em; }
+  .sheet .lbl { font-family: "Share Tech Mono", monospace; font-size: 11px; letter-spacing: .16em; color: var(--olive); text-transform: uppercase; line-height: 2; }
+
   footer { text-align: center; padding: 36px 0 48px; font-family: "Share Tech Mono", monospace; font-size: 12px; letter-spacing: .14em; color: var(--dim); }
 
   @media (max-width: 680px) {
@@ -138,6 +164,10 @@
     h2 .ttl.ja { font-size: 24px; }
     .riff button.row { grid-template-columns: 52px 32px 1fr auto; gap: 10px; }
     .riff .bar { padding-left: 4px; }
+    .sheet summary { grid-template-columns: 52px 1fr auto; gap: 10px; }
+    .sheet .body { grid-template-columns: 1fr; padding-left: 4px; }
+    .sheet .body > .j { order: 1; }
+    .sheet .body > .h.j { margin-top: 28px; }
   }
 </style>
 </head>
@@ -190,6 +220,14 @@
     <h2><span class="no">CRATE 03</span><span class="ttl ja">ギター機材写真館</span><span class="en">GUITAR GEAR GALLERY</span></h2>
     <p class="lead">うちのギター。</p>
     <div class="guitars" id="guitars-list"></div>
+  </div>
+</section>
+
+<section id="lyrics">
+  <div class="wrap">
+    <h2><span class="no">CRATE 04</span><span class="ttl">Lyric Stock</span></h2>
+    <p class="lead">書きためた歌詞と和訳。</p>
+    <div class="sheets" id="lyrics-list"></div>
   </div>
 </section>
 
@@ -308,6 +346,48 @@
         cap.appendChild(tape);
         fig.appendChild(ph); fig.appendChild(cap);
         box.appendChild(fig);
+      });
+    });
+
+  // 歌詞は lyrics/list.json（デスクトップの「歌詞ストック.txt」から作り直される）
+  var LABEL = /^(intro|verse|pre-?chorus|chorus|bridge|interlude|outro|solo)\b/i;
+  function lyricBody(en, ja) {
+    var body = document.createElement('div');
+    body.className = 'body';
+    function cell(cls, text) {
+      var c = document.createElement('div');
+      c.className = cls;
+      if (text) c.textContent = text;
+      body.appendChild(c);
+    }
+    var a = en.split('\n'), b = (ja || '').split('\n');
+    cell('h e', 'LYRICS'); cell('h j', ja ? '和訳' : '');
+    for (var i = 0; i < Math.max(a.length, b.length); i++) {
+      [[a[i] || '', 'en e'], [b[i] || '', 'ja j']].forEach(function (x) {
+        var t = x[0].trim(), side = x[1].slice(-1);
+        if (!t) cell('gap ' + side);
+        else if (LABEL.test(t)) cell('lbl ' + side, t);
+        else cell(x[1], t);
+      });
+    }
+    return body;
+  }
+  fetch('lyrics/list.json', { cache: 'no-cache' })
+    .then(function (res) { return res.json(); })
+    .then(function (items) {
+      var box = document.getElementById('lyrics-list');
+      items.forEach(function (s, i) {
+        var d = document.createElement('details');
+        d.className = 'sheet';
+        var sum = document.createElement('summary');
+        sum.innerHTML = '<span class="no"></span><span class="t"><span></span><small></small></span><span class="open">OPEN</span>';
+        sum.querySelector('.no').textContent = 'No.' + String(i + 1).padStart(3, '0');
+        sum.querySelector('.t span').textContent = s.title;
+        sum.querySelector('.t small').textContent = s.note || '';
+        d.appendChild(sum);
+        d.appendChild(lyricBody(s.en, s.ja));
+        d.addEventListener('toggle', function () { sum.querySelector('.open').textContent = d.open ? 'CLOSE' : 'OPEN'; });
+        box.appendChild(d);
       });
     });
 </script>
