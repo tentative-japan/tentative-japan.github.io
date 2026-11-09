@@ -187,6 +187,71 @@
   header .me img, .release img, .guitar img { border-color: #0c0c0c; }
   .btn { box-shadow: 4px 4px 0 #000; }
 
+  /* ===== 2026-11-09 アルバム試作：曲を選んで並べ、通しで聴く（曲順はその端末のブラウザだけに残る） ===== */
+  .riff { display: grid; grid-template-columns: 1fr auto; align-items: center; }
+  .riff .bar { grid-column: 1 / -1; }
+  .riff .add {
+    all: unset; box-sizing: border-box; cursor: pointer; width: 36px; height: 36px; margin: 0 4px 0 8px;
+    display: grid; place-items: center; border: 1px solid var(--line); border-radius: 3px;
+    color: var(--dim); font-family: "Share Tech Mono", monospace; font-size: 20px; line-height: 1;
+  }
+  .riff .add:hover, .riff .add:focus-visible { color: var(--hazard); border-color: var(--hazard); }
+  .riff .add.in { background: var(--hazard); border-color: var(--hazard); color: #141413; font-size: 15px; }
+  .album {
+    margin: 0 0 36px; padding: 18px 18px 16px; border: 1px solid #5c6066; border-radius: 4px;
+    background: rgba(0,0,0,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .album .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+  .album .lbl { font-family: "Share Tech Mono", monospace; font-size: 12px; letter-spacing: .2em; color: var(--dim); width: 100%; }
+  .album input.name {
+    flex: 1 1 220px; min-width: 0; background: transparent; border: 0; border-bottom: 1px dashed var(--line);
+    color: var(--text); font: 700 24px/1.3 "Stardos Stencil", serif; letter-spacing: .04em; text-transform: uppercase; padding: 2px 0;
+  }
+  .album input.name::placeholder { color: #5d5d58; }
+  .album input.name:focus { outline: none; border-bottom-color: var(--hazard); }
+  .album .total { font-family: "Share Tech Mono", monospace; font-size: 13px; color: var(--dim); letter-spacing: .06em; }
+  .album ol { list-style: none; margin: 14px 0; padding: 0; border-top: 1px solid var(--line); }
+  .album li { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 6px; border-bottom: 1px dashed var(--line); }
+  .album li .go {
+    all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: 40px 1fr; gap: 8px;
+    align-items: center; padding: 9px 2px; min-width: 0;
+  }
+  .album li .go:focus-visible { outline: 2px solid var(--hazard); outline-offset: -2px; }
+  .album li .n { font-family: "Share Tech Mono", monospace; color: var(--dim); font-size: 13px; }
+  .album li .tt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; }
+  .album li.now .tt, .album li.now .n { color: var(--hazard); }
+  .album li.now .n::before { content: "▶"; margin-right: 4px; }
+  .album li .len { font-family: "Share Tech Mono", monospace; color: var(--dim); font-size: 13px; }
+  .album li .mv { display: flex; gap: 4px; }
+  .album .sq {
+    all: unset; box-sizing: border-box; cursor: pointer; width: 32px; height: 32px; display: grid; place-items: center;
+    border: 1px solid var(--line); border-radius: 3px; color: var(--khaki); font-size: 12px; line-height: 1;
+  }
+  .album .sq:hover, .album .sq:focus-visible { border-color: var(--hazard); color: var(--hazard); }
+  .album .sq:disabled { opacity: .25; cursor: default; border-color: var(--line); color: var(--khaki); }
+  .album .empty { margin: 14px 0; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px dashed var(--line); color: var(--dim); font-size: 14px; }
+  .album .ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+  .album .ctl .btn { border: 0; cursor: pointer; font-size: 14px; padding: 9px 20px; }
+  .album .ctl .btn:disabled { opacity: .35; cursor: default; }
+  .album .grp { display: flex; align-items: center; gap: 4px; }
+  .album .grp > span { font-size: 12px; color: var(--dim); margin-right: 4px; }
+  .album .chip {
+    all: unset; box-sizing: border-box; cursor: pointer; padding: 4px 10px; border: 1px solid var(--line); border-radius: 3px;
+    font-size: 13px; color: var(--dim); line-height: 1.4;
+  }
+  .album .chip:focus-visible { outline: 2px solid var(--hazard); outline-offset: 1px; }
+  .album .chip.on { border-color: var(--hazard); color: var(--hazard); }
+  .album .clear { all: unset; cursor: pointer; font-size: 12px; color: var(--dim); text-decoration: underline; margin-left: auto; }
+  .album .clear:hover { color: var(--hazard); }
+  .album .note { margin: 12px 0 0; font-size: 12px; color: var(--dim); }
+
+  @media (max-width: 680px) {
+    .album { padding: 14px 12px; }
+    .album li .go { grid-template-columns: 34px 1fr; }
+    .album li .len { display: none; }
+    .album .clear { margin-left: 0; }
+  }
+
   @media (max-width: 680px) {
     header h1 { font-size: 42px; }
     header .me { grid-template-columns: 1fr; gap: 22px; }
@@ -243,6 +308,26 @@
   <div class="wrap">
     <h2><span class="no">CRATE 02</span><span class="ttl">Riff Box</span></h2>
     <p class="lead">ギターのインストと、リフのアイデア。曲になる前のかけら。</p>
+    <div class="album" id="album">
+      <div class="head">
+        <span class="lbl">ALBUM DRAFT ／ アルバム試作</span>
+        <input class="name" id="album-name" type="text" placeholder="Untitled" aria-label="仮タイトル" maxlength="60">
+        <span class="total" id="album-total"></span>
+      </div>
+      <p class="empty" id="album-empty">下の曲の「＋」を押すと、ここに並びます。</p>
+      <ol id="album-list"></ol>
+      <div class="ctl">
+        <button class="btn" id="album-play" type="button">▶ 通しで聴く</button>
+        <div class="grp" id="album-repeat"><span>リピート</span>
+          <button class="chip" type="button" data-v="off">なし</button><button class="chip" type="button" data-v="all">全曲</button><button class="chip" type="button" data-v="one">1曲</button>
+        </div>
+        <div class="grp" id="album-gap"><span>曲間</span>
+          <button class="chip" type="button" data-v="0">0秒</button><button class="chip" type="button" data-v="2">2秒</button><button class="chip" type="button" data-v="4">4秒</button>
+        </div>
+        <button class="clear" id="album-clear" type="button">全部はずす</button>
+      </div>
+      <p class="note">曲順は、この端末のこのブラウザにだけ残ります。</p>
+    </div>
     <ul class="riffs" id="riffs-list"></ul>
     <audio id="player" preload="none"></audio>
   </div>
@@ -289,6 +374,7 @@
   var list = document.getElementById('riffs-list');
   var audio = document.getElementById('player');
   var current = null;
+  var rowByFile = {}, riffByFile = {}, durByFile = {};
 
   function fmt(s) {
     if (!isFinite(s)) return '';
@@ -296,34 +382,167 @@
     return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
   }
 
+  // ---- アルバム試作（2026-11-09）。曲順・仮タイトル・設定は localStorage にだけ残す ----
+  var KEY = 'tm-album-draft';
+  var album = { name: '', files: [], repeat: 'all', gap: 2 };
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) for (var k in album) if (k in saved) album[k] = saved[k]; } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(album)); } catch (e) {} }
+  var albumFile = null;   // 通しで聴いている曲（null なら通し再生ではない）
+  var gapTimer = null;
+  var A = {
+    list: document.getElementById('album-list'), empty: document.getElementById('album-empty'),
+    total: document.getElementById('album-total'), play: document.getElementById('album-play'),
+    name: document.getElementById('album-name'), clear: document.getElementById('album-clear'),
+    repeat: document.getElementById('album-repeat'), gap: document.getElementById('album-gap')
+  };
+
+  function stopGap() { if (gapTimer) { clearTimeout(gapTimer); gapTimer = null; } }
+
+  function playFile(file) {
+    var li = rowByFile[file];
+    if (!li) return;
+    stopGap();
+    if (current && current !== li) {
+      current.classList.remove('on', 'playing');
+      // 前の曲の表示を長さだけに戻す
+      var pf = Object.keys(rowByFile).filter(function (f) { return rowByFile[f] === current; })[0];
+      current.querySelector('.d').textContent = fmt(durByFile[pf]);
+      current.querySelector('input').value = 0;
+    }
+    current = li;
+    li.classList.add('on');
+    audio.src = 'riffs/' + file;
+    audio.play();
+  }
+
+  function playAlbumAt(i) {
+    if (!album.files.length) return;
+    albumFile = album.files[i];
+    playFile(albumFile);
+    renderAlbum();
+  }
+
+  function renderAlbum() {
+    var files = album.files;
+    A.list.textContent = '';
+    A.empty.style.display = files.length ? 'none' : '';
+    A.list.style.display = files.length ? '' : 'none';
+    var sum = 0, known = true;
+    files.forEach(function (f, i) {
+      var r = riffByFile[f];
+      var li = document.createElement('li');
+      if (f === albumFile) li.className = 'now';
+      li.innerHTML = '<button class="go" type="button"><span class="n"></span><span class="tt"></span></button>' +
+        '<span class="len"></span><span class="mv">' +
+        '<button class="sq up" type="button" aria-label="上へ">▲</button>' +
+        '<button class="sq down" type="button" aria-label="下へ">▼</button>' +
+        '<button class="sq del" type="button" aria-label="はずす">✕</button></span>';
+      li.querySelector('.n').textContent = String(i + 1).padStart(2, '0');
+      li.querySelector('.tt').textContent = r ? r.title : f;
+      li.querySelector('.len').textContent = fmt(durByFile[f]);
+      if (isFinite(durByFile[f])) sum += durByFile[f]; else known = false;
+      li.querySelector('.up').disabled = i === 0;
+      li.querySelector('.down').disabled = i === files.length - 1;
+      li.querySelector('.go').addEventListener('click', function () {
+        if (albumFile === f && current === rowByFile[f]) { audio.paused ? audio.play() : audio.pause(); return; }
+        playAlbumAt(i);
+      });
+      li.querySelector('.up').addEventListener('click', function () { move(i, -1); });
+      li.querySelector('.down').addEventListener('click', function () { move(i, 1); });
+      li.querySelector('.del').addEventListener('click', function () { toggle(f); });
+      A.list.appendChild(li);
+    });
+    A.total.textContent = files.length ? files.length + '曲' + (known ? ' ／ ' + fmt(sum + album.gap * Math.max(files.length - 1, 0)) : '') : '';
+    A.play.disabled = !files.length;
+    A.play.textContent = (albumFile && (!audio.paused || gapTimer)) ? '❚❚ 止める' : '▶ 通しで聴く';
+    [].forEach.call(A.repeat.querySelectorAll('.chip'), function (c) { c.classList.toggle('on', c.dataset.v === album.repeat); });
+    [].forEach.call(A.gap.querySelectorAll('.chip'), function (c) { c.classList.toggle('on', +c.dataset.v === album.gap); });
+    Object.keys(rowByFile).forEach(function (f) {
+      var b = rowByFile[f].querySelector('.add');
+      var on = files.indexOf(f) >= 0;
+      b.classList.toggle('in', on);
+      b.textContent = on ? '✓' : '+';
+      b.setAttribute('aria-label', on ? 'アルバム試作からはずす' : 'アルバム試作に入れる');
+    });
+  }
+
+  function move(i, d) {
+    var j = i + d, f = album.files;
+    if (j < 0 || j >= f.length) return;
+    var t = f[i]; f[i] = f[j]; f[j] = t;
+    save(); renderAlbum();
+    var btn = A.list.children[j].querySelector(d < 0 ? '.up' : '.down');
+    (btn.disabled ? A.list.children[j].querySelector('.go') : btn).focus();
+  }
+
+  function toggle(file) {
+    var i = album.files.indexOf(file);
+    if (i >= 0) {
+      album.files.splice(i, 1);
+      if (albumFile === file) albumFile = null;   // その曲はそのまま最後まで流して、通し再生は終える
+    } else {
+      album.files.push(file);
+    }
+    save(); renderAlbum();
+  }
+
+  A.play.addEventListener('click', function () {
+    if (albumFile && album.files.indexOf(albumFile) >= 0 && current === rowByFile[albumFile]) {
+      if (gapTimer) { stopGap(); albumFile = null; renderAlbum(); return; }
+      audio.paused ? audio.play() : audio.pause();
+      return;
+    }
+    playAlbumAt(0);
+  });
+  A.repeat.addEventListener('click', function (e) {
+    var v = e.target.dataset && e.target.dataset.v; if (!v) return;
+    album.repeat = v; save(); renderAlbum();
+  });
+  A.gap.addEventListener('click', function (e) {
+    var v = e.target.dataset && e.target.dataset.v; if (v == null) return;
+    album.gap = +v; save(); renderAlbum();
+  });
+  A.name.value = album.name;
+  A.name.addEventListener('input', function () { album.name = A.name.value; save(); });
+  A.clear.addEventListener('click', function () {
+    if (!album.files.length || !confirm('アルバム試作の曲を全部はずしますか？')) return;
+    album.files = []; albumFile = null; stopGap(); save(); renderAlbum();
+  });
+
   function addRiff(r) {
     var li = document.createElement('li');
     li.className = 'riff';
     li.innerHTML =
       '<button class="row"><span class="no"></span><span class="play"></span>' +
       '<span class="t"></span><span class="d"></span></button>' +
+      '<button class="add" type="button">+</button>' +
       '<div class="bar"><input type="range" min="0" max="1000" value="0" aria-label="再生位置"></div>';
     li.querySelector('.t').innerHTML = '<span></span><small></small>';
     li.querySelector('.t span').textContent = r.title;
     li.querySelector('.t small').textContent = r.date;
     li.querySelector('.no').textContent = 'No.' + String(list.children.length + 1).padStart(3, '0');
+    rowByFile[r.file] = li; riffByFile[r.file] = r;
     // 長さだけ先に読む
     var probe = new Audio();
     probe.preload = 'metadata';
     probe.src = 'riffs/' + r.file;
-    probe.addEventListener('loadedmetadata', function () { li.querySelector('.d').textContent = fmt(probe.duration); });
+    probe.addEventListener('loadedmetadata', function () {
+      durByFile[r.file] = probe.duration;
+      li.querySelector('.d').textContent = fmt(probe.duration);
+      if (album.files.indexOf(r.file) >= 0) renderAlbum();
+    });
 
     li.querySelector('button.row').addEventListener('click', function () {
       if (current === li) {
+        stopGap();
         audio.paused ? audio.play() : audio.pause();
         return;
       }
-      if (current) current.classList.remove('on', 'playing');
-      current = li;
-      li.classList.add('on');
-      audio.src = 'riffs/' + r.file;
-      audio.play();
+      albumFile = null;   // 1曲ずつ聴くときは通し再生をやめる
+      playFile(r.file);
+      renderAlbum();
     });
+    li.querySelector('.add').addEventListener('click', function () { toggle(r.file); });
     li.querySelector('input').addEventListener('input', function (e) {
       if (current === li && audio.duration) audio.currentTime = audio.duration * e.target.value / 1000;
     });
@@ -331,20 +550,39 @@
   }
   fetch('riffs/list.json', { cache: 'no-cache' })
     .then(function (res) { return res.json(); })
-    .then(function (items) { items.forEach(addRiff); });
+    .then(function (items) {
+      items.forEach(addRiff);
+      // 倉庫から消えた曲は試作からも外す
+      album.files = album.files.filter(function (f) { return rowByFile[f]; });
+      save(); renderAlbum();
+    });
 
-  audio.addEventListener('play', function () { current && current.classList.add('playing'); });
-  audio.addEventListener('pause', function () { current && current.classList.remove('playing'); });
+  audio.addEventListener('play', function () { current && current.classList.add('playing'); renderAlbum(); });
+  audio.addEventListener('pause', function () { current && current.classList.remove('playing'); renderAlbum(); });
   audio.addEventListener('timeupdate', function () {
     if (!current || !audio.duration) return;
     current.querySelector('input').value = Math.round(audio.currentTime / audio.duration * 1000);
     current.querySelector('.d').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
   });
-  // 終わったら次のリフへ
   audio.addEventListener('ended', function () {
-    var next = current && current.nextElementSibling;
-    if (next) next.querySelector('button.row').click();
-    else if (current) current.classList.remove('playing');
+    if (current) current.classList.remove('playing');
+    // 通しで聴いているときは、アルバム試作の曲順で次へ
+    if (albumFile) {
+      var i = album.files.indexOf(albumFile), n = album.files.length;
+      var next = album.repeat === 'one' ? i : i + 1;
+      if (i < 0 || n === 0) { albumFile = null; renderAlbum(); return; }
+      if (next >= n) {
+        if (album.repeat !== 'all') { albumFile = null; renderAlbum(); return; }
+        next = 0;
+      }
+      albumFile = album.files[next];
+      var go = function () { gapTimer = null; if (albumFile) playFile(albumFile); };
+      if (album.gap > 0) { gapTimer = setTimeout(go, album.gap * 1000); renderAlbum(); } else go();
+      return;
+    }
+    // ふだんは倉庫の並びで次のリフへ
+    var nx = current && current.nextElementSibling;
+    if (nx) nx.querySelector('button.row').click();
   });
 
   // ギター写真は guitars/list.json（ギター写真フォルダの「写真館を更新」で作り直される）
