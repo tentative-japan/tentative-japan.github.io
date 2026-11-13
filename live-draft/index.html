@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>tentative live album draft</title>
+<link rel="icon" href="../img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@700&family=Zilla+Slab:wght@500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1f2d45; --sub:#5b6475; --paper:#fff; --band:#f4f1ea; --orange:#f29a1f; --red:#e2352b; --blue:#2a5bd7; --line:#e3ded3; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"Noto Sans JP","Hiragino Sans",sans-serif; line-height:1.8; -webkit-font-smoothing:antialiased; }
+  .stripe { height:6px; background:linear-gradient(90deg,var(--orange) 0 33.3%,var(--red) 33.3% 66.6%,var(--blue) 66.6%); }
+  .wrap { max-width:640px; margin:0 auto; padding:32px 16px 64px; }
+  .kicker { font-family:"Zilla Slab",serif; font-weight:700; letter-spacing:.14em; font-size:13px; color:var(--sub); }
+  h1 { font-family:"Stardos Stencil",serif; font-size:clamp(34px,9vw,52px); line-height:1.05; margin:6px 0 4px; }
+  .note { color:var(--sub); font-size:14px; margin:0 0 24px; }
+  audio { width:100%; margin:8px 0 20px; }
+  ol { list-style:none; padding:0; margin:0; border-top:1px solid var(--line); }
+  li { border-bottom:1px solid var(--line); }
+  button.t { all:unset; cursor:pointer; display:grid; grid-template-columns:3.2em 1fr auto; gap:8px; width:100%; padding:12px 4px; align-items:baseline; }
+  button.t:hover, li.on button.t { background:var(--band); }
+  .no { font-family:"Zilla Slab",serif; font-weight:700; color:var(--sub); }
+  .ttl { font-weight:700; }
+  .at { display:block; font-size:13px; color:var(--sub); font-weight:400; }
+  .tm { font-family:"Zilla Slab",serif; color:var(--sub); font-size:14px; }
+  .era { font-size:11px; font-weight:700; letter-spacing:.08em; padding:1px 7px; border-radius:3px; color:#fff; margin-right:6px; vertical-align:2px; }
+  .e1 { background:var(--orange); } .es { background:var(--red); } .e2 { background:var(--blue); } .ese { background:var(--sub); }
+  footer { margin-top:32px; font-size:13px; color:var(--sub); }
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<div class="wrap">
+  <div class="kicker">LIVE ALBUM — DRAFT 01</div>
+  <h1>tentative live</h1>
+  <p class="note">試作です。いろいろな公演から1曲ずつ選び、本物の歓声でつないだライブ盤の聴き心地を確かめるためのもの。約12分。</p>
+
+  <audio id="a" controls preload="metadata" src="draft01.mp3"></audio>
+
+  <ol id="list">
+    <li><button class="t" data-t="0"><span class="no">01</span><span class="ttl"><span class="era ese">SE</span>Intro<span class="at">高円寺 Show Boat ／ 2021年5月22日（バンドとして初めてのライブ）</span></span><span class="tm">0:00</span></button></li>
+    <li><button class="t" data-t="52"><span class="no">02</span><span class="ttl"><span class="era e1">第1期</span>Southern Birds<span class="at">立川 BABEL ／ 2022年7月23日</span></span><span class="tm">0:52</span></button></li>
+    <li><button class="t" data-t="276"><span class="no">03</span><span class="ttl"><span class="era es">SOLO</span>Strawberry<span class="at">高円寺 UFO Club ／ 2021年2月11日（未発表曲）</span></span><span class="tm">4:36</span></button></li>
+    <li><button class="t" data-t="513"><span class="no">04</span><span class="ttl"><span class="era e2">第2期</span>Sports Car<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">8:33</span></button></li>
+    <li><button class="t" data-t="678"><span class="no">05</span><span class="ttl"><span class="era ese">SE</span>Outro<span class="at">高円寺 Show Boat ／ 2021年5月22日</span></span><span class="tm">11:18</span></button></li>
+  </ol>
+
+  <footer>音量だけ揃え、会場ごとの音の違いはそのまま残しています。</footer>
+</div>
+<script>
+  const a = document.getElementById('a');
+  const items = [...document.querySelectorAll('#list li')];
+  const starts = items.map(li => +li.querySelector('button').dataset.t);
+  items.forEach((li, i) => li.querySelector('button').addEventListener('click', () => { a.currentTime = starts[i]; a.play(); }));
+  a.addEventListener('timeupdate', () => {
+    let k = 0; starts.forEach((s, i) => { if (a.currentTime >= s) k = i; });
+    items.forEach((li, i) => li.classList.toggle('on', i === k));
+  });
+</script>
+</body>
+</html>
