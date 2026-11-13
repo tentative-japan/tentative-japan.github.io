@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>tentative Live Bootleg</title>
+<meta name="description" content="tentative が2020年から2026年までにライブで演奏した全26曲を、いろいろな公演から1曲ずつ集めた2枚組。制作中。">
 <meta property="og:title" content="tentative Live Bootleg">
-<meta property="og:image" content="https://tentative-japan.github.io/bootleg/cover2.jpg">
-<meta name="description" content="tentative のいろいろな公演から1曲ずつ集めたライブ音源。制作中。">
+<meta property="og:image" content="https://tentative-japan.github.io/bootleg/disc1_04.jpg">
 <link rel="icon" href="../img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,24 +16,28 @@
   * { box-sizing: border-box; }
   body { margin:0; background:var(--paper); color:var(--ink); font-family:"Noto Sans JP","Hiragino Sans",sans-serif; line-height:1.8; -webkit-font-smoothing:antialiased; }
   .stripe { height:6px; background:linear-gradient(90deg,var(--orange) 0 33.3%,var(--red) 33.3% 66.6%,var(--blue) 66.6%); }
-  .wrap { max-width:640px; margin:0 auto; padding:32px 16px 64px; }
+  .wrap { max-width:640px; margin:0 auto; padding:24px 16px 64px; }
+  .back { margin:0 0 16px; font-size:14px; } .back a { color:var(--sub); text-decoration:none; }
   .kicker { font-family:"Zilla Slab",serif; font-weight:700; letter-spacing:.14em; font-size:13px; color:var(--sub); }
-  h1 { font-family:"Stardos Stencil",serif; font-size:clamp(34px,9vw,52px); line-height:1.05; margin:6px 0 4px; }
-  .note { color:var(--sub); font-size:14px; margin:0 0 24px; }
-  audio { width:100%; margin:8px 0 20px; }
+  h1 { font-family:"Stardos Stencil",serif; font-size:clamp(34px,9vw,52px); line-height:1.05; margin:6px 0 8px; }
+  .note { color:var(--sub); font-size:14px; margin:0 0 8px; }
+  .jump { display:flex; gap:10px; margin:16px 0 8px; }
+  .jump a { flex:1; text-align:center; padding:8px; border:2px solid var(--ink); border-radius:6px; text-decoration:none; color:var(--ink); font-family:"Zilla Slab",serif; font-weight:700; letter-spacing:.08em; }
+  .jump a.d1 { box-shadow:3px 3px 0 #C9352B; } .jump a.d2 { box-shadow:3px 3px 0 #2E58B8; }
+  .disc { margin-top:40px; }
+  .cover { display:block; width:100%; height:auto; border-radius:4px; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+  h2 { font-family:"Zilla Slab",serif; font-size:28px; margin:18px 0 4px; } h2 small { font-size:14px; color:var(--sub); font-weight:500; margin-left:10px; letter-spacing:.04em; }
+  audio { width:100%; margin:8px 0 14px; }
   ol { list-style:none; padding:0; margin:0; border-top:1px solid var(--line); }
   li { border-bottom:1px solid var(--line); }
-  button.t { all:unset; cursor:pointer; display:grid; grid-template-columns:3.2em 1fr auto; gap:8px; width:100%; padding:12px 4px; align-items:baseline; }
+  button.t { all:unset; cursor:pointer; display:grid; grid-template-columns:2.6em 1fr auto; gap:8px; width:100%; padding:11px 4px; align-items:baseline; }
   button.t:hover, li.on button.t { background:var(--band); }
   .no { font-family:"Zilla Slab",serif; font-weight:700; color:var(--sub); }
   .ttl { font-weight:700; }
   .at { display:block; font-size:13px; color:var(--sub); font-weight:400; }
   .tm { font-family:"Zilla Slab",serif; color:var(--sub); font-size:14px; }
-  .era { font-size:11px; font-weight:700; letter-spacing:.08em; padding:1px 7px; border-radius:3px; color:#fff; margin-right:6px; vertical-align:2px; }
-  .e1 { background:var(--orange); } .es { background:var(--red); } .e2 { background:var(--blue); } .ese { background:var(--sub); }
-  .cover { display:block; width:100%; height:auto; border-radius:4px; margin:0 0 24px; box-shadow:0 6px 24px rgba(0,0,0,.18); }
-  .disc2 { margin:-8px 0 28px; display:flex; align-items:center; gap:14px; } .disc2 img { width:42%; height:auto; border-radius:4px; box-shadow:0 4px 16px rgba(0,0,0,.16); } .disc2 figcaption { font-family:"Zilla Slab",serif; font-weight:700; letter-spacing:.08em; font-size:14px; color:var(--sub); }
-  .back { margin:0 0 20px; font-size:14px; } .back a { color:var(--sub); text-decoration:none; }
+  .era { font-size:11px; font-weight:700; letter-spacing:.06em; padding:1px 7px; border-radius:3px; color:#fff; margin-right:6px; vertical-align:2px; }
+  .e1 { background:var(--orange); } .es { background:var(--red); } .e2 { background:var(--blue); } .ese { background:var(--sub); } .est { background:#3c6e47; }
   footer { margin-top:32px; font-size:13px; color:var(--sub); }
 </style>
 </head>
@@ -41,40 +45,66 @@
 <div class="stripe"></div>
 <div class="wrap">
   <p class="back"><a href="../">← tentative トップへ</a></p>
-  <img class="cover" src="cover2.jpg" width="1200" height="1200" alt="tentative Live Bootleg のジャケット。2020〜2026年の公演の写真を並べたコンタクトシートに、赤いゴム印で LIVE BOOTLEG">
-  <figure class="disc2"><img src="disc2.jpg" width="1200" height="1200" alt="DISC 2 のジャケット。ソロと今のメンバーの公演8つの写真に、青いゴム印で LIVE BOOTLEG"><figcaption>DISC 2 ― SOLO &amp; LINEUP II</figcaption></figure>
-  <div class="kicker">LIVE ALBUM — 制作中（試作03b）</div>
+  <div class="kicker">LIVE ALBUM — 制作中（試作04）</div>
   <h1>tentative<br>Live Bootleg</h1>
-  <p class="note">2020年から2026年まで、いろいろな公演から1曲ずつ選んで、当日の歓声でつないだライブ盤。いま作っている途中の版です。約41分・11曲。</p>
-
-  <audio id="a" controls preload="metadata" src="draft03b.mp3"></audio>
-
-  <ol id="list">
-    <li><button class="t" data-t="0.0"><span class="no">01</span><span class="ttl"><span class="era ese">SE</span>Intro (SE)<span class="at">高円寺 Show Boat ／ 2021年5月22日（バンドとして初めてのライブ）</span></span><span class="tm">0:00</span></button></li>
-    <li><button class="t" data-t="14.5"><span class="no">02</span><span class="ttl"><span class="era e1">第1期</span>Weekend<span class="at">高円寺 Show Boat ／ 2021年5月22日（山下くんのボーカルとアコギ）</span></span><span class="tm">0:14</span></button></li>
-    <li><button class="t" data-t="264.5"><span class="no">03</span><span class="ttl"><span class="era e1">第1期</span>Southern Birds<span class="at">立川 BABEL ／ 2022年7月23日</span></span><span class="tm">4:24</span></button></li>
-    <li><button class="t" data-t="454.0"><span class="no">04</span><span class="ttl"><span class="era e1">第1期</span>A Little Bit Of The Moon<span class="at">立川 BABEL ／ 2022年7月23日</span></span><span class="tm">7:34</span></button></li>
-    <li><button class="t" data-t="726.2"><span class="no">05</span><span class="ttl"><span class="era e1">第1期</span>Big Bad Dragonfly<span class="at">立川 BABEL ／ 2022年7月23日</span></span><span class="tm">12:06</span></button></li>
-    <li><button class="t" data-t="879.5"><span class="no">06</span><span class="ttl"><span class="era e1">第1期</span>Toxic Innocence<span class="at">赤坂 Navey Floor ／ 2022年10月</span></span><span class="tm">14:39</span></button></li>
-    <li><button class="t" data-t="1085.2"><span class="no">07</span><span class="ttl"><span class="era es">SOLO</span>Strawberry<span class="at">高円寺 UFO Club ／ 2021年2月11日（未発表曲）</span></span><span class="tm">18:05</span></button></li>
-    <li><button class="t" data-t="1326.2"><span class="no">08</span><span class="ttl"><span class="era es">SOLO</span>Guitar Solo ~ Dead Shrine<span class="at">高円寺 UFO Club ／ 2021年2月11日</span></span><span class="tm">22:06</span></button></li>
-    <li><button class="t" data-t="1581.0"><span class="no">09</span><span class="ttl"><span class="era e2">第2期</span>Sports Car<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">26:21</span></button></li>
-    <li><button class="t" data-t="1737.5"><span class="no">10</span><span class="ttl"><span class="era e2">第2期</span>Wonder Fuel<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">28:57</span></button></li>
-    <li><button class="t" data-t="1998.2"><span class="no">11</span><span class="ttl"><span class="era e2">第2期</span>Old and Rotten<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">33:18</span></button></li>
-    <li><button class="t" data-t="2235.2"><span class="no">12</span><span class="ttl"><span class="era e2">第2期</span>My Black Widow<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">37:15</span></button></li>
-    <li><button class="t" data-t="2442.5"><span class="no">13</span><span class="ttl"><span class="era ese">SE</span>Outro (SE)<span class="at">高円寺 Show Boat ／ 2021年5月22日</span></span><span class="tm">40:42</span></button></li>
-  </ol>
-
-  <footer>音量だけ揃え、会場ごとの音の違いはそのまま残しています。</footer>
+  <p class="note">2020年から2026年までにライブで演奏した全26曲を、いろいろな公演から1曲ずつ選んだ2枚組。時期はわざと混ぜて並べ、曲のあいだは当日の歓声でつないでいます。</p>
+  <div class="jump"><a class="d1" href="#disc1">DISC 1</a><a class="d2" href="#disc2">DISC 2</a></div>
+  <section class="disc" id="disc1">
+    <img class="cover" src="disc1_04.jpg" width="1200" height="1200" alt="DISC 1 のジャケット。いろいろな公演の写真を散らし、赤のゴム印で LIVE BOOTLEG">
+    <h2>DISC 1<small>13曲・約46分</small></h2>
+    <audio controls preload="metadata" src="disc1_04.mp3"></audio>
+    <ol>
+      <li><button class="t" data-t="0.0"><span class="no">01</span><span class="ttl"><span class="era ese">SE</span>Intro (SE)<span class="at">高円寺 Show Boat ／ 2021年5月22日（バンドとして初めてのライブ）</span></span><span class="tm">0:00</span></button></li>
+      <li><button class="t" data-t="14.5"><span class="no">02</span><span class="ttl"><span class="era e2">第2期</span>Sports Car<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">0:14</span></button></li>
+      <li><button class="t" data-t="171.0"><span class="no">03</span><span class="ttl"><span class="era e1">第1期</span>Southern Birds<span class="at">立川 BABEL ／ 2022年7月23日</span></span><span class="tm">2:51</span></button></li>
+      <li><button class="t" data-t="360.5"><span class="no">04</span><span class="ttl"><span class="era es">ソロ</span>Revolution（The Beatles）<span class="at">武蔵境 STATTO ／ 2023年 ソロライブ1回目</span></span><span class="tm">6:00</span></button></li>
+      <li><button class="t" data-t="525.5"><span class="no">05</span><span class="ttl"><span class="era e1">第1期</span>Toxic Innocence<span class="at">赤坂 Navey Floor ／ 2022年10月</span></span><span class="tm">8:45</span></button></li>
+      <li><button class="t" data-t="731.2"><span class="no">06</span><span class="ttl"><span class="era e2">第2期</span>名前のない街<span class="at">武蔵境 STATTO ／ 2026年5月</span></span><span class="tm">12:11</span></button></li>
+      <li><button class="t" data-t="980.2"><span class="no">07</span><span class="ttl"><span class="era e1">第1期</span>Weekend<span class="at">高円寺 Show Boat ／ 2021年5月22日（山下くんのボーカルとアコギ）</span></span><span class="tm">16:20</span></button></li>
+      <li><button class="t" data-t="1230.2"><span class="no">08</span><span class="ttl"><span class="era e1">第1期</span>Big Bad Dragonfly<span class="at">立川 BABEL ／ 2022年7月23日</span></span><span class="tm">20:30</span></button></li>
+      <li><button class="t" data-t="1383.5"><span class="no">09</span><span class="ttl"><span class="era es">ソロ</span>Strawberry<span class="at">高円寺 UFO Club ／ 2021年2月11日（未発表曲）</span></span><span class="tm">23:03</span></button></li>
+      <li><button class="t" data-t="1624.5"><span class="no">10</span><span class="ttl"><span class="era e2">第2期</span>Wonder Fuel<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">27:04</span></button></li>
+      <li><button class="t" data-t="1885.2"><span class="no">11</span><span class="ttl"><span class="era est">STUDIO</span>Sit Back in the Rockin&#x27; Chair<span class="at">From the Basement ／ 2020年2月26日</span></span><span class="tm">31:25</span></button></li>
+      <li><button class="t" data-t="2246.7"><span class="no">12</span><span class="ttl"><span class="era es">ソロ</span>Would?（Alice in Chains）<span class="at">武蔵境 STATTO ／ 2023年 ソロライブ2回目</span></span><span class="tm">37:26</span></button></li>
+      <li><button class="t" data-t="2473.7"><span class="no">13</span><span class="ttl"><span class="era e1">第1期</span>Fire<span class="at">赤坂 Navey Floor ／ 2022年10月</span></span><span class="tm">41:13</span></button></li>
+    </ol>
+  </section>
+  <section class="disc" id="disc2">
+    <img class="cover" src="disc2_04.jpg" width="1200" height="1200" alt="DISC 2 のジャケット。いろいろな公演の写真を散らし、青のゴム印で LIVE BOOTLEG">
+    <h2>DISC 2<small>13曲・約47分</small></h2>
+    <audio controls preload="metadata" src="disc2_04.mp3"></audio>
+    <ol>
+      <li><button class="t" data-t="0.0"><span class="no">01</span><span class="ttl"><span class="era e2">第2期</span>Shift<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">0:00</span></button></li>
+      <li><button class="t" data-t="193.6"><span class="no">02</span><span class="ttl"><span class="era e1">第1期</span>A Little Bit Of The Moon<span class="at">立川 BABEL ／ 2022年7月23日</span></span><span class="tm">3:13</span></button></li>
+      <li><button class="t" data-t="465.9"><span class="no">03</span><span class="ttl"><span class="era e2">第2期</span>閃光<span class="at">鶴間 えちごやきゅーぴー ／ 2025年</span></span><span class="tm">7:45</span></button></li>
+      <li><button class="t" data-t="710.9"><span class="no">04</span><span class="ttl"><span class="era es">ソロ</span>Nice<span class="at">高円寺 UFO Club ／ 2021年2月11日</span></span><span class="tm">11:50</span></button></li>
+      <li><button class="t" data-t="947.4"><span class="no">05</span><span class="ttl"><span class="era e2">第2期</span>Old and Rotten<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">15:47</span></button></li>
+      <li><button class="t" data-t="1184.4"><span class="no">06</span><span class="ttl"><span class="era e1">第1期</span>Sarah, You Should Walk Slowly<span class="at">巣鴨 獅子王 ／ 2022年11月</span></span><span class="tm">19:44</span></button></li>
+      <li><button class="t" data-t="1399.4"><span class="no">07</span><span class="ttl"><span class="era es">ソロ</span>Jeremy（Pearl Jam）<span class="at">武蔵境 STATTO ／ 2023年 ソロライブ3回目</span></span><span class="tm">23:19</span></button></li>
+      <li><button class="t" data-t="1705.1"><span class="no">08</span><span class="ttl"><span class="era es">ソロ</span>Guitar Solo ~ Dead Shrine<span class="at">高円寺 UFO Club ／ 2021年2月11日</span></span><span class="tm">28:25</span></button></li>
+      <li><button class="t" data-t="1959.9"><span class="no">09</span><span class="ttl"><span class="era e1">第1期</span>My Little Princess<span class="at">立川 BABEL ／ 2022年7月23日</span></span><span class="tm">32:39</span></button></li>
+      <li><button class="t" data-t="2120.9"><span class="no">10</span><span class="ttl"><span class="era e2">第2期</span>Monkey Daughter<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">35:20</span></button></li>
+      <li><button class="t" data-t="2292.1"><span class="no">11</span><span class="ttl"><span class="era e1">第1期</span>It&#x27;s the Hollow of Last Winter Days<span class="at">立川 BABEL ／ 2022年7月23日（Catch The Air の名で上げた版）</span></span><span class="tm">38:12</span></button></li>
+      <li><button class="t" data-t="2575.0"><span class="no">12</span><span class="ttl"><span class="era e2">第2期</span>My Black Widow<span class="at">HiZZA JAM #1 ／ 2026年11月1日</span></span><span class="tm">42:55</span></button></li>
+      <li><button class="t" data-t="2780.0"><span class="no">13</span><span class="ttl"><span class="era ese">SE</span>Outro (SE)<span class="at">高円寺 Show Boat ／ 2021年5月22日</span></span><span class="tm">46:20</span></button></li>
+    </ol>
+  </section>
+  <footer>音量だけ揃え、会場ごとの音の違いはそのまま残しています。カバー曲はホームページでの試聴用です。</footer>
 </div>
 <script>
-  const a = document.getElementById('a');
-  const items = [...document.querySelectorAll('#list li')];
-  const starts = items.map(li => +li.querySelector('button').dataset.t);
-  items.forEach((li, i) => li.querySelector('button').addEventListener('click', () => { a.currentTime = starts[i]; a.play(); }));
-  a.addEventListener('timeupdate', () => {
-    let k = 0; starts.forEach((s, i) => { if (a.currentTime >= s) k = i; });
-    items.forEach((li, i) => li.classList.toggle('on', i === k));
+  document.querySelectorAll('.disc').forEach(sec => {
+    const a = sec.querySelector('audio');
+    const items = [...sec.querySelectorAll('li')];
+    const starts = items.map(li => +li.querySelector('button').dataset.t);
+    items.forEach((li, i) => li.querySelector('button').addEventListener('click', () => {
+      document.querySelectorAll('audio').forEach(o => { if (o !== a) o.pause(); });
+      a.currentTime = starts[i]; a.play();
+    }));
+    a.addEventListener('play', () => document.querySelectorAll('audio').forEach(o => { if (o !== a) o.pause(); }));
+    a.addEventListener('timeupdate', () => {
+      let k = 0; starts.forEach((s, i) => { if (a.currentTime >= s) k = i; });
+      items.forEach((li, i) => li.classList.toggle('on', i === k));
+    });
   });
 </script>
 </body>
