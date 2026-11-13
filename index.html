@@ -59,6 +59,12 @@
 
   section { padding: 72px 0; }
   section.alt { background: var(--band); }
+  .bootleg { display:block; margin-top:28px; padding:18px 20px; border:2px solid var(--ink); border-radius:6px; text-decoration:none; color:var(--ink); background:var(--paper); box-shadow:4px 4px 0 var(--orange); }
+  .bootleg:hover { box-shadow:4px 4px 0 var(--red); }
+  .bootleg span { display:block; }
+  .bl-k { font-size:12px; font-weight:700; letter-spacing:.12em; color:var(--sub); }
+  .bl-t { font-family:"Stardos Stencil",serif; font-size:clamp(24px,6vw,32px); line-height:1.15; margin:4px 0; }
+  .bl-d { font-size:14px; color:var(--sub); line-height:1.6; }
   h2 {
     font-family: "Zilla Slab", serif; font-weight: 700;
     font-size: 30px; letter-spacing: .04em; margin: 0 0 28px;
@@ -189,6 +195,7 @@
     <ul>
       <li><a href="#release">Release</a></li>
       <li><a href="#video">Video</a></li>
+      <li class="hide-sp"><a href="#bootleg">Bootleg</a></li>
       <li class="hide-sp"><a href="#profile">Profile</a></li>
       <li><a href="#links">Links</a></li>
     </ul>
@@ -246,6 +253,11 @@
       </div>
     </div>
     <p class="more"><a href="https://www.youtube.com/@tentativeofficial8822" target="_blank" rel="noopener">YouTubeチャンネルでもっと見る →</a></p>
+    <a class="bootleg" id="bootleg" href="bootleg/">
+      <span class="bl-k">LIVE AUDIO ／ 制作中</span>
+      <span class="bl-t">tentative Live Bootleg</span>
+      <span class="bl-d">2020〜2026年のいろいろな公演から1曲ずつ。当日の歓声でつないだライブ盤 →</span>
+    </a>
   </div>
 </section>
 
